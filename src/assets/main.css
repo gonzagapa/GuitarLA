@@ -1,9 +1,5 @@
 @import './base.css';
 
-@charset "UTF-8";
-.fw-black {
-  font-weight: 900;
-}
 
 .btn-dark {
   text-transform: uppercase;
