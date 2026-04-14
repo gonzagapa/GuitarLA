@@ -12,6 +12,10 @@ import GuitarraCard from "./components/GuitarraCard.vue";
 
 const guitarras = ref(db);
 
+const agregarCarrito = (guitarra)=>{
+    console.log({...guitarra})
+}
+
 onMounted(()=>{
     console.log("Componente montado");
 })
@@ -26,7 +30,7 @@ onMounted(()=>{
 
         <div class="row mt-5">
 
-            <GuitarraCard v-for="guitarra in guitarras" :guitarra="guitarra" />
+            <GuitarraCard @agregar-carrito="agregarCarrito" v-for="guitarra in guitarras" :guitarra="guitarra" />
 
         </div>
     </main>

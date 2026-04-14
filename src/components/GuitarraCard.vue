@@ -8,13 +8,15 @@ import { computed } from 'vue';
         }
     })
 
+    defineEmits(['agregarCarrito'])
+
     const urlImagen = computed(()=> "img/" + props.guitarra.imagen + ".jpg")
 </script>
 
 <template>
    <div class="col-md-6 col-lg-4 my-4 row align-items-center">
                 <div class="col-4">
-                    <img class="img-fluid" :src="urlImagen" :alt="'guitarra ' +  guitarra.nombre">
+                    <img class="img-fluid" :src="urlImagen" :alt="guitarra.nombre">
                 </div>
                 <div class="col-8">
                     <h3 class="text-black fs-4 fw-bold text-uppercase">{{ guitarra.nombre }}</h3>
@@ -23,6 +25,7 @@ import { computed } from 'vue';
                     <button 
                         type="button"
                         class="btn btn-dark w-100 "
+                        @click="$emit('agregarCarrito',guitarra)"
                     >Agregar al Carrito</button>
                 </div>
     </div><!-- FIN GUITARRA -->
