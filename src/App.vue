@@ -11,9 +11,10 @@ import GuitarraCard from "./components/GuitarraCard.vue";
 // console.log(state);
 
 const guitarras = ref(db);
+const carritos = ref([])
 
 const agregarCarrito = (guitarra)=>{
-    console.log({...guitarra})
+    carritos.value.push(guitarra)
 }
 
 onMounted(()=>{
