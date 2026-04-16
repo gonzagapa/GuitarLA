@@ -44,6 +44,10 @@ const eliminarElemento = (id)=>{
     carritos.value = carritos.value.filter((item => item.id !== id))
 }
 
+const vaciarCarrito = ()=>{
+    carritos.value = []
+}
+
 </script>
 
 <template>
@@ -52,6 +56,7 @@ const eliminarElemento = (id)=>{
     @decrementar-cantidad="decrementarCantidad"
     @agregar-carrito="agregarCarrito"
     @eliminar-carrito="eliminarElemento"
+    @vaciar-carrito="vaciarCarrito"
     :guitarra="guitarraHighlighted"
     :carritos="carritos"/>
     <!-- MAIN CONTENT -->
