@@ -1,18 +1,14 @@
 <script setup>
-import {ref,reactive, onMounted} from "vue";
+import {ref, onMounted} from "vue";
 import {db} from './data/guitarras';
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import GuitarraCard from "./components/GuitarraCard.vue";
 
-// const state = reactive({
-//     guitarass:db
-// })
 
-// console.log(state);
-
-const guitarras = ref(db);
+const guitarras = ref([]);
 const carritos = ref([])
+const guitarraHighlighted = ref({})
 
 const agregarCarrito = (guitarra)=>{
 
@@ -28,15 +24,20 @@ const agregarCarrito = (guitarra)=>{
 }
 
 onMounted(()=>{
-    console.log("Componente montado");
+    guitarras.value = db;
+    guitarraHighlighted.value = db[3];
 })
 
-const incrementarCantidad = ()=>{
-    console.log("Incrementar....")
+const incrementarCantidad = (id)=>{
+    const guitarra = carritos.value.find(item => item.id === id);
+    guitarra.cantidad++
 }
 
-const decrementarCantidad = ()=>{
-    console.log("decrementar...")
+const decrementarCantidad = (id)=>{
+    const guitarra = carritos.value.find(item => item.id === id);
+    if(guitarra.cantidad > 0){
+        guitarra.cantidad -=1
+    }
 }
 
 </script>
@@ -45,6 +46,8 @@ const decrementarCantidad = ()=>{
     <Header  
     @incrementar-cantidad="incrementarCantidad"
     @decrementar-cantidad="decrementarCantidad"
+    @agregar-carrito="agregarCarrito"
+    :guitarra="guitarraHighlighted"
     :carritos="carritos"/>
     <!-- MAIN CONTENT -->
       <main class="container-xl mt-5">

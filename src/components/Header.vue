@@ -3,10 +3,14 @@
         carritos:{
             type:Array,
             required:true
+        },
+        guitarra:{
+            type:Object,
+            required:true
         }
     })
 
-    defineEmits(['incrementar-cantidad', 'decrementar-cantidad'])
+    defineEmits(['incrementar-cantidad', 'decrementar-cantidad','agregar-carrito'])
 </script>
 
 <template>
@@ -50,7 +54,7 @@
                                                 <button
                                                     type="button"
                                                     class="btn btn-dark"
-                                                    @click="$emit('decrementar-cantidad')"
+                                                    @click="$emit('decrementar-cantidad', elemento.id)"
                                                 >
                                                     -
                                                 </button>
@@ -58,7 +62,7 @@
                                                 <button
                                                     type="button"
                                                     class="btn btn-dark"
-                                                    @click="$emit('incrementar-cantidad')"
+                                                    @click="$emit('incrementar-cantidad', elemento.id)"
                                                 >
                                                     +
                                                 </button>
@@ -85,11 +89,12 @@
 
             <div class="row mt-5">
                 <div class="col-md-6 text-center text-md-start pt-5">
-                    <h1 class="display-2 fw-bold">Modelo VAI</h1>
-                    <p class="mt-5 fs-5 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, possimus quibusdam dolor nemo velit quo, fuga omnis, iure molestias optio tempore sint at ipsa dolorum odio exercitationem eos inventore odit.</p>
-                    <p class="text-primary fs-1 fw-black">$399</p>
+                    <h1 class="display-2 fw-bold">{{ guitarra.nombre }}</h1>
+                    <p class="mt-5 fs-5 text-white">{{ guitarra.descripcion }}</p>
+                    <p class="text-primary fs-1 fw-black">${{ guitarra.precio }}</p>
                     <button 
                         type="button"
+                        @click="$emit('agregar-carrito',guitarra)"
                         class="btn fs-4 bg-primary text-white py-2 px-5"
                     >Agregar al Carrito</button>
                 </div>
