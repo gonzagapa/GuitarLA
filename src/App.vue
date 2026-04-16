@@ -40,6 +40,10 @@ const decrementarCantidad = (id)=>{
     }
 }
 
+const eliminarElemento = (id)=>{
+    carritos.value = carritos.value.filter((item => item.id !== id))
+}
+
 </script>
 
 <template>
@@ -47,6 +51,7 @@ const decrementarCantidad = (id)=>{
     @incrementar-cantidad="incrementarCantidad"
     @decrementar-cantidad="decrementarCantidad"
     @agregar-carrito="agregarCarrito"
+    @eliminar-carrito="eliminarElemento"
     :guitarra="guitarraHighlighted"
     :carritos="carritos"/>
     <!-- MAIN CONTENT -->
